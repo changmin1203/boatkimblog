@@ -4,7 +4,7 @@
 
 
 # SAS ondemand
- - https://welcome.oda.sas.com 에서 가입 후 사용.
+ - https://welcome.oda.sas.com 에서 가입 후 사용
  - Launch - > SAS studio로 이동
 	 - 온라인 서버에서 구동되는 SAS
 
