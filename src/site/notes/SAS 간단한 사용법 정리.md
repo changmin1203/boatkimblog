@@ -78,14 +78,22 @@ if sex =2 and age>=45; /*여성, 45세 이상만 남김*/
 
 /*AGEGP 생성 */
 
-if age>= 60 then AGEGP = '60세 이상';
-else if 55<=age<60 then AGEGP = '55-60';
-else if 45<=age<55 then AGEGP = '45-55';
+if age>= 60 then AGEGP = 3;
+else if 55<=age<60 then AGEGP = 2;
+else if 45<=age<55 then AGEGP = 1;
 else AGEGP = 'NULL';
 
 /*BMI 생성  */
 
-BMI = HE_ht/(HE_wt/100)**2;
+BMI = HE_wt/(HE_ht/100)**2;
+
+/*정확한 순위 반영을 위해 BS1_1, BD1의 코딩 형식 변경  */
+if BS1_1 = 1 then BS1_1=2;
+else if BS1_1 = 2 then BS1_1=3;
+else if BS1_1 = 3 then BS1_1=1;
+else BS1_1 =.;
+
+if BD1 = 9 then BD1=.;
 run;
 ```
 
@@ -97,9 +105,9 @@ run;
 > 각 독립변수와 종속변수의 관련성을 보기 위해 X-Y 산점도(multi-scatter plot)를 그리고, 상관계수를 추정하고, 검정하시오.
 
 ```sas
-/*산점도  */
+/*산점도*/
 proc sgscatter data = TEMP1;
-matrix age HE_wt HE_ht HE_wc N_en N_cho N_fat HE_chol;
+matrix age HE_wt HE_ht HE_wc N_en N_cho N_fat BMI HE_chol;
 run;
 ```
 ![스크린샷 2026-03-27 오후 7.08.47.png\|400](/img/user/5.%20Attatchments/%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-03-27%20%EC%98%A4%ED%9B%84%207.08.47.png)
